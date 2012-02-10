@@ -14,7 +14,7 @@
     },
 
     comedyHandler: function(){
-      alert("I am now watching a comedy!")
+      alert("I am now watching a comedy!");
     }
 
   });
@@ -29,35 +29,35 @@
     url: "http://gdata.youtube.com/feeds/api/charts/movies/most_popular?v=2&alt=jsonc&region=US&paid-content=false&callback=?",
 
     parse: function(response){
-      this.totalItems = response.data.totalItems
-      this.startIndex = response.data.startIndex
-      this.itemsPerPage = response.data.itemsPerPage
-      return response.data.items
+      this.totalItems = response.data.totalItems;
+      this.startIndex = response.data.startIndex;
+      this.itemsPerPage = response.data.itemsPerPage;
+      return response.data.items;
     },
 
     next: function(){
-      var nextStartIndex = this.startIndex + this.itemsPerPage
+      var nextStartIndex = this.startIndex + this.itemsPerPage;
       if(nextStartIndex > this.totalItems){
         // ???
         //TODO: do nothing until I can think of something more clever
       }else{
-        this.fetch({data:{"start-index":nextStartIndex}})
+        this.fetch({data:{"start-index":nextStartIndex}});
       }
-      return this
+      return this;
     },
 
     previous: function(){
-      var nextStartIndex = this.startIndex - this.itemsPerPage
+      var nextStartIndex = this.startIndex - this.itemsPerPage;
       if(nextStartIndex < 0){
-        nextStartIndex = 1
+        nextStartIndex = 1;
       }
 
-      this.fetch({data:{"start-index":nextStartIndex}})
-      return this
+      this.fetch({data:{"start-index":nextStartIndex}});
+      return this;
     },
 
     jumpTo: function(startIndex) {
-      this.fetch({data:{"start-index":startIndex}})
+      this.fetch({data:{"start-index":startIndex}});
     }
 
   });
@@ -72,9 +72,9 @@
     },
 
     getTemplate: function(){
-      var vs = this.get("views")
-      var v = this.get("view")
-      return vs[v]
+      var vs = this.get("views");
+      var v = this.get("view");
+      return vs[v];
     },
 
     toggle: function(){
@@ -102,7 +102,7 @@
 
     initialize: function(){
       //set up a default template
-      this.template = this.options.template || "#movieGridTemplate"
+      this.template = this.options.template || "#movieGridTemplate";
     },
 
     render: function(){
@@ -150,9 +150,9 @@
       this.render();
     },
     render: function(){
-      $(this.el).html("")
-      $(this.el).append(this.viewToggleButton.el)
-      $(this.el).append(this.pagination.el)
+      $(this.el).html("");
+      $(this.el).append(this.viewToggleButton.el);
+      $(this.el).append(this.pagination.el);
 
     }
   });
@@ -200,7 +200,7 @@
 
     initialize: function(){
       _.bindAll(this);
-      this.currentPage = 1
+      this.currentPage = 1;
       this.nextButton = new Backtube.Button({model:this.collection,
                               label:"Next",
                               clickHandler : function(){
@@ -224,11 +224,11 @@
 
     jumpTo: function(e){
       e.preventDefault();
-      this.currentPage = 1 * $(e.currentTarget).html()
-      this.collection.jumpTo( (this.currentPage * this.collection.itemsPerPage) - (this.collection.itemsPerPage - 1))
+      this.currentPage = 1 * $(e.currentTarget).html();
+      this.collection.jumpTo( (this.currentPage * this.collection.itemsPerPage) - (this.collection.itemsPerPage - 1));
     },
     calcNumOfPages: function(){
-      var list = this.collection
+      var list = this.collection;
       return Math.ceil(list.totalItems/list.itemsPerPage);
     },
 
@@ -244,23 +244,23 @@
 
         // only show previous if we are not on the first page
         if(this.collection.startIndex == 1){
-          $(this.previousButton.el).addClass("hidden")
+          $(this.previousButton.el).addClass("hidden");
         }else{
-          $(this.previousButton.el).removeClass("hidden")
+          $(this.previousButton.el).removeClass("hidden");
         }
 
         // only show next if we are not on the last page
         if( (this.collection.startIndex + this.collection.itemsPerPage) > this.collection.totalItems){
-          $(this.nextButton.el).addClass("hidden")
+          $(this.nextButton.el).addClass("hidden");
         }else{
-          $(this.nextButton.el).removeClass("hidden")
+          $(this.nextButton.el).removeClass("hidden");
         }
 
-      $(this.el).append(this.previousButton.el)
+      $(this.el).append(this.previousButton.el);
       for(var i = 0; i < this.calcNumOfPages(); i++){
         $(this.el).append("<a href='#' class='pageNumber'>" + (i+1) + "</a>" );
       }
-      $(this.el).append(this.nextButton.el)
+      $(this.el).append(this.nextButton.el);
       return this;
     }
   });
