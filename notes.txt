@@ -1,0 +1,79 @@
+Building Backtube
+Backbone + Youtube
+
+
+Intro:
+Client-side SPI apps are a very different beast than
+the server-side apps I've been writing for the past
+15 years.
+
+Here are the biggest differences:
+- Single page apps vs. traditional multipage
+  -- hash routing vs. HTTP
+- client-side MVC vs. server-side MVC
+- component-oriented vs. page-oriented
+- asynchronicity / event-driven development
+
+
+There are many SPI frameworks out there:
+-jQuery Mobile
+-Spine
+-Express
+-Batman
+-SproutCore
+
+
+Be warned:
+- Backbone has no opinion
+If you are used to opinionated frameworks --
+let me rephrase that: I'm really used to
+the comfortable constraints of an opinionated
+framework like Grails -- then Backbone is
+gonna freak you out. It's the person in your
+life who, when you ask them where they want
+to go for lunch, says, "I dunno. Whatever you
+want." While that makes for an incredibly
+flexible solution in the long run, in the
+short run, you are going to be left begging
+for just a simple, canonical example. Every
+tutorial you come across is going to use a
+slightly different set of technologies
+(CoffeeScript instead of JavaScript,
+jQuery templates instead of Underscore, etc.)
+
+- Backbone has no persistence
+
+
+
+
+
+
+Act 1: Meet the players
+Backbone is an incredibly light framework.
+There are essentially 4 types of objects:
+- Router
+- Model
+- Collection
+- View
+
+Explore
+
+
+
+
+Act 2: Templates and Multiple Views
+Let's set up a couple of templates - one for list view,
+the other for grid view
+
+Now, set up a model for MovieListView to hold the state
+of the list. Add listener. Add a toggle method.
+- Backtube.MovieListViewHelper
+
+We can test it via the dev tools
+
+Now that that's working, let's set up a sidebar.
+- Backtube.SidebarView
+- Backtube.ViewToggleButton
+
+
+

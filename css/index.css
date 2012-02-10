@@ -1,0 +1,32 @@
+#movieList {
+  list-style-type: none;
+}
+
+.listItem {
+  clear: both;
+  border-bottom: 1px solid #ccc;
+  width: 75%;
+  padding-top: 1em;
+}
+
+
+
+.floatLeft {
+  float: left;
+  margin-right: 1em;
+}
+
+.pageNumber {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.hidden {
+  /*display: none;*/
+  visibility: hidden;
+}
+
+.currentPage {
+  background-color: #ccc;
+}
+

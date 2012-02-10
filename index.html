@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BackTube</title>
+  <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" >
+  <script src="javascript/vendor/jquery-1.7.1.min.js"></script>
+  <script src="javascript/vendor/underscore-1.3.1-min.js"></script>
+  <script src="javascript/vendor/backbone-0.9.0-min.js"></script>
+  <script src="javascript/backtube.js" type="text/javascript"></script>
+
+  <script id="movieListTemplate" type="text/x-underscore-template">
+    <article class="listItem">
+      <h2><a href="#details/<%= id %>"><%= title %></a></h2>
+      <p>
+        <a href="#details/<%= id %>">
+          <img class="floatLeft"
+               src="<%= thumbnail.sqDefault %>"
+               alt="<%= title %>"
+               title="<%= title %>" /></a>
+        <%= description %>
+      </p>
+    </article>
+  </script>
+
+
+  <script id="movieGridTemplate" type="text/x-underscore-template">
+    <article class="floatLeft">
+      <h2><a href="#details/<%= id %>"><%= title %></a></h2>
+      <a href="#details/<%= id %>">
+        <img
+             src="<%= thumbnail.hqDefault %>"
+             alt="<%= title %>"
+             title="<%= title %>" /></a>
+    </article>
+  </script>
+
+  <script id="movieTextOnlyTemplate" type="text/x-underscore-template">
+    <article>
+      <h2><a href="#details/<%= id %>"><%= title %></a></h2>
+    </article>
+  </script>
+
+
+
+
+  <script>
+    $(document).ready(function() {
+      window.App = {};
+      App.movieList = new Backtube.MovieList();
+      App.movieListView = new Backtube.MovieListView({collection:App.movieList});
+      App.sidebarView = new Backtube.SidebarView({viewToggle:App.movieListView.model,
+                                                  movieList: App.movieList});
+      App.router = new Backtube.Router();
+      Backbone.history.start();
+    });
+  </script>
+  
+</head>
+
+<body>
+<h1>BackTube</h1>
+
+<section id="sidebar"></section>
+<section id="content"><ul id="movieList"></ul></section>
+
+
+</body>
+</html>
